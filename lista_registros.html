@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Registros</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Registros</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Perfil</th>
+                    <th>Razão Social</th>
+                    <th>CNPJ</th>
+                    <th>Endereço</th>
+                    <th>Número</th>
+                    <th>Cidade</th>
+                    <th>Estado</th>
+                    <th>Bairro</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Usuário</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in registros %}
+                <tr>
+                    <td>{{ usuario.Perfil }}</td>
+                    <td>{{ usuario.razao_social }}</td>
+                    <td>{{ usuario.cnpj }}</td>
+                    <td>{{ usuario.endereco }}</td>
+                    <td>{{ usuario.numero }}</td>
+                    <td>{{ usuario.cidade }}</td>
+                    <td>{{ usuario.estado }}</td>
+                    <td>{{ usuario.bairro }}</td>
+                    <td>{{ usuario.email }}</td>
+                    <td>{{ usuario.telefone }}</td>
+                    <td>{{ usuario.username }}</td>
+                    <td>
+                        {% if usuario.username == usuario_logado %}                        
+                        <a href="{{ url_for('editar', username=usuario.username) }}">
+                            <button>Editar</button>
+                        </a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <button onclick="window.location.href='/'">Voltar</button>
+    </div>
+</body>
+</html>

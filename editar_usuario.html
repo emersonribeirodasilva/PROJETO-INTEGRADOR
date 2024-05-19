@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Usuário</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Usuário</h1>
+        <form action="/editar/{{ usuario.username }}" method="post">
+            <label for="Perfil">Informe o perfil de negócio:</label>
+            <select id="Perfil" name="Perfil" required>
+                <option value="Comprador" {% if usuario.Perfil == 'Comprador' %}selected{% endif %}>Comprador</option>
+                <option value="Gerador" {% if usuario.Perfil == 'Gerador' %}selected{% endif %}>Gerador</option>
+            </select>
+            <input type="text" name="razao_social" placeholder="Razão Social" value="{{ usuario.razao_social }}" required><br>
+            <input type="text" name="cnpj" placeholder="CNPJ" value="{{ usuario.cnpj }}" required><br>
+            <input type="text" name="endereco" placeholder="Endereço" value="{{ usuario.endereco }}" required><br>
+            <input type="text" name="numero" placeholder="Número" value="{{ usuario.numero }}" required><br>
+            <input type="text" name="cidade" placeholder="Cidade" value="{{ usuario.cidade }}" required><br>
+            <input type="text" name="estado" placeholder="Estado" value="{{ usuario.estado }}" required><br>
+            <input type="text" name="bairro" placeholder="Bairro" value="{{ usuario.bairro }}" required><br>
+            <input type="email" name="email" placeholder="Email" value="{{ usuario.email }}" required><br>
+            <input type="text" name="telefone" placeholder="Telefone" value="{{ usuario.telefone }}" required><br>
+            <input type="password" name="senha" placeholder="Senha" value="{{ usuario.senha }}" required><br>
+            <button type="submit">Salvar</button>
+        </form>
+        <button onclick="window.location.href='/login'">Cancelar</button>
+    </div>
+</body>
+</html>
